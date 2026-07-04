@@ -14,8 +14,13 @@ const fs = require('fs/promises');
 async function readMembers(filePath) {
   // TODO: 實作此函式
   // 提示：用 fs/promises 的 readFile，記得加 'utf-8'，再用 JSON.parse 轉成物件
+  try{
   const members = await fs.readFile(filePath,'utf-8');
   return JSON.parse(members);
+  }catch(error){
+    console.error('會員資料讀取失敗',error.message);
+    throw error;
+  }
 }
 
 // ========== 任務二：篩選 VIP 會員 ==========
